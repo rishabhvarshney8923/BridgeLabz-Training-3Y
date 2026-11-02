@@ -1,0 +1,21 @@
+.box{
+    height: 100px;
+    width: 100px;
+    background-color: black;
+    animation: move 4s ease infinite;
+    border-top: 10px solid black;
+    border-radius: 50%;
+}
+
+@keyframes move {
+    0%{
+        transform: translateX(0px);
+    }
+    50%{
+        transform: translateX(100px);
+    }
+    100%{
+        transform: translate(200px,200px);
+    }
+    
+}

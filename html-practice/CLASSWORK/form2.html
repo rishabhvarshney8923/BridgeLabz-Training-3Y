@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/submit">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="please fill it" required pattern="[a-zA-Z]+">
+        <br></br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="please fill it" required >
+        <br></br>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required minlength="8">
+        <br></br>
+        <label for="age">Age:</label>
+        <input type="number" name="age" id="age" min="18" max="30">
+        <br></br>
+        <label for="dob">DOB:</label>
+        <input type="date" name="dob" id="dob">
+        <br></br>
+        <label for="gender">Gender</label>
+        <input type="radio" name="male" id="male">
+        <label for="male">male</label>
+        <input type="radio" name="female" id="female">
+        <label for="female">female</label>
+        <br></br>
+        <label for="course">Course</label>
+        <input type="checkbox" name="html" id="html">
+        <label for="html">html</label>
+        <input type="checkbox" name="css" id="css">
+        <label for="css" selected>css</label>
+        <br></br>
+        <label for="sex">SEX:</label>
+        <select name="sex" id="sex">
+        <option value="karado">karado</option>
+        <option value="kar liya">kar liya</option>
+        <option value="muthiii">muthiii</option>
+        </select>
+        <br></br>
+        <label for="file">Upload file:</label>
+        <input type="file" name="file" id="file">
+        <br></br>
+        <label for="message">Message:</label>
+        <textarea name="About yourself" id="textarea" rows="5" col="10" textarea></textarea>
+        <br></br>
+        <button type="submit">Submit</button>
+        <input type="reset" value="reset">
+        <footer>&copy; 2026 MyWebsite</footer>
+    </form>
+</body>
+</html>

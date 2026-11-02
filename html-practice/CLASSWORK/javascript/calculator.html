@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #ebebeb;
+      font-family: Roboto, Arial, sans-serif;
+      padding: 15px;
+    }
+
+    .calculator {
+      width: 100%;
+      max-width: 300px;
+      background: #4a5568;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .display {
+      padding: 15px 20px 10px;
+      text-align: right;
+      color: white;
+      background: #465063;
+    }
+
+    .display .input {
+      font-size: 13px;
+      color: #8d97a8;
+      height: 20px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #5b6579;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .display .result {
+      font-size: 36px;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      height: 44px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .display .result.small {
+      font-size: 24px;
+      line-height: 44px;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    button {
+      height: 65px;
+      border: 1px solid #424b5c;
+      background: #4a5568;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #5a6679;
+    }
+
+    button:active {
+      background: #3d4657;
+    }
+
+    button.operator {
+      background: #434c5e;
+      color: #c9d1e0;
+    }
+
+    button.operator:hover {
+      background: #55607a;
+    }
+
+    button.special {
+      color: #aab3c5;
+    }
+
+    button.red {
+      color: #ef5350;
+    }
+
+    button.equal {
+      background: #3b82f6;
+      font-size: 24px;
+    }
+
+    button.equal:hover {
+      background: #60a5fa;
+    }
+
+    @media (max-width: 400px) {
+      .calculator {
+        max-width: 100%;
+      }
+
+      button {
+        height: 58px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="calculator">
+
+    <div class="display">
+      <div class="input" id="history"></div>
+      <div class="result" id="result">0</div>
+    </div>
+
+    <div class="buttons">
+      <button class="special red" data-type="clear">AC</button>
+      <button class="special" data-type="sign">±</button>
+      <button class="special" data-type="percent">%</button>
+      <button class="operator" data-type="operator" data-value="÷">÷</button>
+
+      <button data-type="number" data-value="7">7</button>
+      <button data-type="number" data-value="8">8</button>
+      <button data-type="number" data-value="9">9</button>
+      <button class="operator" data-type="operator" data-value="×">×</button>
+
+      <button data-type="number" data-value="4">4</button>
+      <button data-type="number" data-value="5">5</button>
+      <button data-type="number" data-value="6">6</button>
+      <button class="operator" data-type="operator" data-value="−">−</button>
+
+      <button data-type="number" data-value="1">1</button>
+      <button data-type="number" data-value="2">2</button>
+      <button data-type="number" data-value="3">3</button>
+      <button class="operator" data-type="operator" data-value="+">+</button>
+
+      <button data-type="decimal">.</button>
+      <button data-type="number" data-value="0">0</button>
+      <button class="special" data-type="delete">DEL</button>
+      <button class="equal" data-type="equal">=</button>
+    </div>
+
+  </div>
+
+  <script>
+    var historyEl = document.getElementById("history");
+    var resultEl = document.getElementById("result");
+    var buttons = document.querySelector(".buttons");
+
+    var current = "0";        // number being typed
+    var previous = "";        // first number
+    var operator = "";        // + − × ÷
+    var waiting = false;      // true after pressing an operator
+    var justEqual = false;    // true after pressing =
+
+    function updateScreen() {
+      resultEl.textContent = current;
+
+      if (current.length > 10) {
+        resultEl.classList.add("small");
+      } else {
+        resultEl.classList.remove("small");
+      }
+
+      if (operator !== "" && waiting) {
+        historyEl.textContent = previous + " " + operator;
+      }
+    }
+
+    function calculate() {
+      var a = parseFloat(previous);
+      var b = parseFloat(current);
+      var answer;
+
+      if (operator === "+") answer = a + b;
+      if (operator === "−") answer = a - b;
+      if (operator === "×") answer = a * b;
+      if (operator === "÷") {
+        if (b === 0) return "Error";
+        answer = a / b;
+      }
+
+      return String(parseFloat(answer.toFixed(10)));
+    }
+
+    function pressNumber(num) {
+      if (current === "Error" || waiting || justEqual || current === "0") {
+        current = num;
+      } else {
+        current = current + num;
+      }
+      waiting = false;
+      justEqual = false;
+    }
+
+    function pressDecimal() {
+      if (current === "Error" || waiting || justEqual) {
+        current = "0.";
+      } else if (current.indexOf(".") === -1) {
+        current = current + ".";
+      }
+      waiting = false;
+      justEqual = false;
+    }
+
+    function pressOperator(op) {
+      if (current === "Error") return;
+
+      // if user already typed two numbers, calculate first (e.g. 2 + 3 +)
+      if (operator !== "" && !waiting) {
+        current = calculate();
+        if (current === "Error") {
+          operator = "";
+          historyEl.textContent = "";
+          return;
+        }
+      }
+
+      previous = current;
+      operator = op;
+      waiting = true;
+      justEqual = false;
+    }
+
+    function pressEqual() {
+      if (operator === "" || waiting) return;
+
+      var expression = previous + " " + operator + " " + current + " =";
+      current = calculate();
+      historyEl.textContent = expression;
+
+      operator = "";
+      previous = "";
+      justEqual = true;
+    }
+
+    function pressClear() {
+      current = "0";
+      previous = "";
+      operator = "";
+      waiting = false;
+      justEqual = false;
+      historyEl.textContent = "";
+    }
+
+    function pressDelete() {
+      if (current === "Error" || waiting || justEqual) return;
+
+      current = current.slice(0, -1);
+      if (current === "" || current === "-") {
+        current = "0";
+      }
+    }
+
+    function pressPercent() {
+      if (current === "Error") return;
+      current = String(parseFloat((parseFloat(current) / 100).toFixed(10)));
+    }
+
+    function pressSign() {
+      if (current === "Error" || current === "0") return;
+
+      if (current.charAt(0) === "-") {
+        current = current.slice(1);
+      } else {
+        current = "-" + current;
+      }
+    }
+
+    buttons.addEventListener("click", function (event) {
+      var btn = event.target;
+      var type = btn.dataset.type;
+      var value = btn.dataset.value;
+
+      if (!type) return;   // clicked on empty space
+
+      if (type === "number")   pressNumber(value);
+      if (type === "decimal")  pressDecimal();
+      if (type === "operator") pressOperator(value);
+      if (type === "equal")    pressEqual();
+      if (type === "clear")    pressClear();
+      if (type === "delete")   pressDelete();
+      if (type === "percent")  pressPercent();
+      if (type === "sign")     pressSign();
+
+      updateScreen();
+    });
+  </script>
+
+</body>
+</html>

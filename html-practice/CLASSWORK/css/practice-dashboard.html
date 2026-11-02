@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+        body{
+            font-family:arial;
+            background:lightgray;
+        }
+        .header{
+            height:60px;
+            color:white;
+            display:flex;
+            background-color:#111111;
+            align-items:center;
+            justify-content:center;
+    
+            position:relative;
+        }
+        .header h3{
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .close{
+            position: absolute;
+            font-size: 38px;
+            top:50%;
+            left:25px;
+            cursor: pointer;
+           
+            font-weight: normal;
+            line-height:1;
+            transform: translateY(-50%);
+        }
+        .nav{
+            position: absolute;
+            display: flex;
+            top:50%;
+            right:10px;
+            align-items: center;
+            transform: translateY(-50%);
+
+        }
+        .nav a{
+           
+            text-decoration: none;
+            color:white;
+            margin-left:25px;
+            
+        }
+        .nav a:hover{
+            color: lightgray;
+        }
+        .main{
+            display: flex;
+            min-height: 390px;
+        }
+        .sidebar{
+            width: 290px;
+            min-height: 390px;
+            color: white;
+            background: #111111;
+            flex-shrink: 0;
+        }
+        .sidebar a{
+            display: block;
+            text-decoration: none;
+            color: white;
+            height: 60px;
+            padding:20px 25px;
+            border-bottom:1px,solid,#252525;
+            font-size: 15px;
+        }
+        .sidebar a:hover{
+            background: #222222;
+        }
+        .content{
+            background: white;
+            min-height: 390px;
+            flex:1;
+            padding:65px 20px;
+        }
+        .content h2{
+            font-size: 25px;
+            margin-bottom: 20px;
+            color: #222222;
+        }
+        .content p{
+            font-size: 15px;
+            color: #555555;
+            line-height: 1.5;
+        }
+        @media (max-width:768px){
+            .nav{
+                display: none;
+            }
+            .header h3{
+                font-size: 16px;
+            }
+            .sidebar{
+                width: 220px;
+            }
+            .content{
+                padding: 40px 20px;
+            }
+            .content h2{
+                font-size: 20px;
+            }
+            .content p{
+                font-size: 12px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="close">X</div>
+        <h3>University Portal</h3>
+        <div class="nav">
+            <a href="#">Home</a>
+            <A href="#">courses</A>
+            <a href="#">profile</a>
+        </div>
+    </div>
+    <div class="main">
+        <div class="sidebar">
+            <a href="#">Dashboard</a>
+            <a href="#">qwertyui</a>
+            <a href="#">eyuio</a>
+            <a href="#">yhnm</a>
+        </div>
+        <div class="content">
+            <h2>welcomw to my rooom</h2>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores et libero voluptates facere excepturi eos laudantium, error nihil est aut pariatur quod atque! Similique alias, commodi doloremque nesciunt cumque quaerat!</p>
+        </div>
+    </div>
+</body>
+</html>

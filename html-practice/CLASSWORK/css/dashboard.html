@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background:lightgrey;
+        }
+        .header {
+            height: 60px;
+            background: #111111;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .header h3 {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .close {
+            position: absolute;
+            left: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 35px;
+            font-weight: normal;
+            line-height: 1;
+            cursor: pointer;
+        }
+        .nav {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            margin-left: 25px;
+        }
+        .nav a:hover {
+            color: #cccccc;
+        }
+        .main {
+            display: flex;
+            min-height: 390px;
+        }
+        .sidebar {
+            width: 280px;
+            min-height: 390px;
+            background: #111111;
+            color: white;
+            flex-shrink: 0;
+        }
+        .sidebar a {
+            display: block;
+            height: 60px;
+            padding: 20px 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            border-bottom: 1px solid #252525;
+        }
+        .sidebar a:hover {
+            background: #222222;
+        }
+        .content {
+            background: white;
+            flex: 1;
+            min-height: 390px;
+            padding: 65px 20px;
+        }
+        .content h2 {
+            font-size: 25px;
+            margin-bottom: 20px;
+            color: #222222;
+        }
+        .content p {
+            font-size: 15px;
+            color: #555555;
+            line-height: 1.5;
+        }
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+            .header h3 {
+                font-size: 16px;
+            }
+            .sidebar {
+                width: 220px;
+            }
+            .content {
+                padding: 40px 20px;
+            }
+            .content h2 {
+                font-size: 20px;
+            }
+            .content p {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="close">×</div>
+        <h3>University Portal</h3>
+        <div class="nav">
+            <a href="#">Home</a>
+            <a href="#">Courses</a>
+            <a href="#">Profile</a>
+        </div>
+    </div>
+    <div class="main">
+        <div class="sidebar">
+            <a href="#">Dashboard</a>
+            <a href="#">Courses</a>
+            <a href="#">Settings</a>
+            <a href="#">Logout</a>
+        </div>
+        <div class="content">
+            <h2>Welcome to the University Dashboard</h2>
+            <p>This is your main content area. Resize the window or use the hamburger icon to see the responsive behavior.</p>
+        </div>
+    </div>
+</body>
+</html>

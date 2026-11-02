@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<style>
+
+.container {
+    width: 70%;
+    margin: auto;
+    padding: 20px;
+    background-color: lightblue;
+}
+
+.menu {
+    display: block;
+}
+
+h1 {
+    font-size: 4vw;
+}
+
+
+/* Mobile */
+@media (max-width: 600px) {
+
+    .container {
+        width: 100%;
+    }
+
+    .menu {
+        display: none;
+    }
+
+}
+
+
+/* Landscape */
+@media (orientation: landscape) {
+
+    body {
+        background-color: lightgray;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="menu">
+    Home | About | Contact
+</div>
+
+<div class="container">
+
+    <h1>Responsive Website</h1>
+
+    <p>This website changes according to screen size.</p>
+
+</div>
+
+</body>
+
+</html>

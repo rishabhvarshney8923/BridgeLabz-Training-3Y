@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>learning input value</h1>
+    <input type="text" name="" id="name">
+    <button id="display">display</button>
+    <h1 id="head">--------</h1>
+    <script>
+
+        let nameE1=document.querySelector('#name');
+        let addE1=document.querySelector('#add');
+        let headE1=document.querySelector('#head');
+
+        nameE1.addEventListener("input",()=>{
+            headE1.textContent=nameE1.value;
+        })
+
+    </script>
+</body>
+</html>

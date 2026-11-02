@@ -7,6 +7,12 @@
     align-items: center;
 }
 
+
+/* .card {
+    transform: translate(100px, 50px);
+} */
+
+
 .card{
     width: 200px;
     height: 300px;
@@ -17,9 +23,46 @@
     box-shadow: -10px -10px 50px rgb(27, 28, 32),
     10px 10px 50px rgb(11, 47, 188);
 
+    /* transition: background-color 0.5s; */
+    transition: transform 0.5s, background-color 0.3s;
     /* background-image: linear-gradient(to right bottom,blue,red); */
     /* background-image: linear-gradient(45deg,blue 0% 30%,red 35% 70%,yellow 75% 100%); */
-    background-image: radial-gradient(blue ,red ,yellow );
+    /* background-image: radial-gradient(blue ,red ,yellow ); */
 
 
+}
+/* .card:hover {
+    transform: translateX(100px);
+} */
+
+.card button {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+#move {
+    display: none;
+}
+
+label {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: black;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.card {
+    transition: transform 1s;
+}
+
+/* When button/label is pressed */
+#move:checked ~ .card {
+    transform: translateY(-100px);
 }
